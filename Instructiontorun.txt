@@ -1,0 +1,59 @@
+ Backend Setup
+```bash
+# Navigate to backend
+cd backend
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Train the model (creates models/ folder)
+python -m train.train_model --data_path ../data/Crop_recommendation.csv --out_dir ../models
+```
+
+Start Backend Server
+```bash
+# Set environment variables (PowerShell)
+$env:MODEL_DIR = "../models"
+$env:DB_PATH = "./data/harvestify.db"
+
+# Start FastAPI server
+uvicorn app.main:app --reload --port 8000
+```
+
+Frontend Setup
+```bash
+# Open new terminal, navigate to frontend
+cd frontend
+
+# Install Node dependencies
+npm install
+
+Start development server
+npm run dev
+```
+Access Application
+- **Frontend:** http://localhost:5173
+- **Backend API:** http://localhost:8000
+- **API Docs:** http://localhost:8000/docs
+
+Backend Development
+```bash
+cd backend
+# Install in development mode
+pip install -e .
+
+# Run with auto-reload
+uvicorn app.main:app --reload --port 8000
+```
+
+### Frontend Development
+```bash
+cd frontend
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
